@@ -1,29 +1,28 @@
-size=500
+"""
+A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+a^2 + b^2 = c^2
 
-steps=range(3,2*size+3,2)
+For example, 3^2 + 4^2 = 9 + 16 = 25 = 52.
 
-L=[[2]]
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc.
 
-for i in range(0,size):
-	L.append([L[i][0]+steps[i]])
-	
-	
-for row in range(0,size):
-	for col in range(0,size):
-		L[row].append(L[row][col]+steps[col])
+"""
+import time
 
-triplets=[]
+tic=time.time()
 
-for x in L:
-	for y in x[L.index(x):]:
-		if (y**0.5)%1==0:
-			triplets.append((L.index(x)+1,x.index(y)+1,int(y**0.5)))
-			
-for t in triplets:
-	if sum(t)==1000:
-		break
+triplets = [ ((a,b,1000-(a+b)) for b in range(a+1,501-a)) for a in range(1,333) ]
 
-print t
+print(triplets[0])
 
+for series in triplets:
+    for trip in series:
+        print(trip)
 
-			
+prod = 0
+
+tac=time.time()-tic
+
+print("Answer = {0}".format(prod))
+print("Elapsed time: {0}".format(tac))

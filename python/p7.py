@@ -1,11 +1,6 @@
 import time
-import sys
 
-#Find the Nth prime
-
-N=int(sys.argv[1])
-i=0
-k=1
+tic=time.time()
 
 def isPrime(nmb):
 	if nmb%2==0 and nmb!=2:
@@ -14,12 +9,19 @@ def isPrime(nmb):
 		if nmb%i==0:
 			return False
 	return True
-	
-while i<N:
-	k=k+1
-	if isPrime(k):
-		i=i+1
-	
 
-print k
+
+
+n=1
+i=3    
+while(n < 10001):
+    if isPrime(i):
+        n += 1
+    i += 2
+    
+
+tac=time.time() - tic
+
+print("Answer = {0}".format(i) )
+print("Elapsed time = {0:.3f}".format(tac) )
 	

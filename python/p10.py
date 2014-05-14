@@ -1,17 +1,25 @@
+"""
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+Find the sum of all the primes below two million.
+"""
+import time
 
-def isPrime(nmb):
-	if nmb%2==0 and nmb!=2:
-		return False
-	for i in range(3,int(nmb**0.5+1),2):
-		if nmb%i==0:
-			return False
-	return True
-	
+def ESieve(N):
+    """Sieve of Eratosthenes
+    Find all primes < N
+    """
+    marked=set() 
+    for p in xrange(2,N+1,1) :
+        if p in marked:
+            continue
+        for m in xrange(p**2,N+1,p):
+            marked.add(m)
+        yield p
 
-L=[2]
 
-for i in range(3,2000000,2):
-	if isPrime(i):
-		L.append(i)
-		
-print sum(L)
+tic = time.time()
+prime_sum = sum(p for p in ESieve(2000000) )
+tac = time.time() - tic
+
+print("Answer = {0}".format(prime_sum))
+print("Elapsed time: {0}".format(tac))

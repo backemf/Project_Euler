@@ -1,22 +1,20 @@
+"""
+The sum of the squares of the first ten natural numbers is,
+1^2 + 2^2 + ... + 10^2 = 385
+The square of the sum of the first ten natural numbers is,
+(1 + 2 + ... + 10)^2 = 552 = 3025
+Hence the difference between the sum of the squares 
+of the first ten natural numbers and the square of the sum is 3025 - 385 = 2640
+Find the difference between the sum of the squares of 
+the first one hundred natural numbers and the square of the sum.
+"""
+
 import time
 
 start_time = time.time()
-sumsquare=0
-squaresum=0
-
-for k in range(1,101):
-	sumsquare=sumsquare+k**2
-
-for i in range(1,101):
-	for j in range(i,i*100+1,i):
-		squaresum=squaresum+j
-
-
-
+diff = sum(i * sum(j for j in range(1,101) if j != i) for i in range(1,101))
 elapsed_time = time.time()- start_time
 
-print "Square of the sum is %d" %(squaresum)
-print "Sum of the squares is %d" %(sumsquare)
-print "Difference is %d" %(squaresum-sumsquare)
-print "Elapsed time is %.3f seconds" %(elapsed_time)
+print("Answer = {0}".format(diff))
+print("Elapsed time is {0:.6f} seconds".format(elapsed_time))
 
